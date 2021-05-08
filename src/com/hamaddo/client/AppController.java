@@ -54,7 +54,7 @@ public class AppController {
 
     public void initialize(){
         listContextMenu = new ContextMenu();
-        MenuItem deleteMenuItem = new MenuItem("Delete");
+        MenuItem deleteMenuItem = new MenuItem("Удалить");
         deleteMenuItem.setOnAction(event -> {
             TodoItem item = todoListView.getSelectionModel().getSelectedItem();
             deleteItem(item);
@@ -120,7 +120,7 @@ public class AppController {
     public void showNewItemDialog(){
         Dialog<ButtonType> dialog = new Dialog<>();
         dialog.initOwner(mainBorderPane.getScene().getWindow());
-        dialog.setTitle("Add new item");
+        dialog.setTitle("Добавить новое событие");
         FXMLLoader fxmlLoader = new FXMLLoader();
         fxmlLoader.setLocation(getClass().getResource("todoItemDialog.fxml"));
         try {
@@ -153,9 +153,9 @@ public class AppController {
     @FXML
     public void deleteItem(TodoItem item){
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
-        alert.setTitle("Delete item");
-        alert.setHeaderText("Delete item: " + item.getShortDescription());
-        alert.setContentText("Are you sure?");
+        alert.setTitle("Удалить событие");
+        alert.setHeaderText("Удалить событие " + item.getShortDescription());
+        alert.setContentText("Вы уверенны?");
         Optional<ButtonType> result = alert.showAndWait();
         if(result.isPresent() && result.get() == ButtonType.OK){
             TodoData.getInstance().deleteTodoItem(item);

@@ -23,24 +23,22 @@
     <top>
         <VBox>
             <MenuBar>
-                <Menu text="File">
-                    <items>
-                        <MenuItem text="New" onAction="#showNewItemDialog"/>
-                        <SeparatorMenuItem/>
-                        <MenuItem text="Exit" onAction="#handleExit"/>
-                    </items>
+                <Menu text="Меню">
+                    <MenuItem text="Новый файл" onAction="#showNewItemDialog"/>
+                    <SeparatorMenuItem/>
+                    <MenuItem text="Выйти" onAction="#handleExit"/>
                 </Menu>
             </MenuBar>
             <ToolBar>
                 <HBox spacing="4" prefHeight="30">
-                    <Button text="Add" onAction="#showNewItemDialog" prefHeight="30">
+                    <Button text="Добавить" onAction="#showNewItemDialog" prefHeight="30">
                         <tooltip>
-                            <Tooltip text="Add a new task"/>
+                            <Tooltip text="Добавить новое событие"/>
                         </tooltip>
                     </Button>
-                    <ToggleButton fx:id="filterToggleButton" text="Show today only" onAction="#handleFilterButton" prefHeight="30">
+                    <ToggleButton fx:id="filterToggleButton" text="События на сегодня" onAction="#handleFilterButton" prefHeight="30">
                         <tooltip>
-                            <Tooltip text="Show today's task only"/>
+                            <Tooltip text="Задачи на сегодня"/>
                         </tooltip>
                     </ToggleButton>
                 </HBox>
@@ -56,7 +54,7 @@
         <VBox style="-fx-background-color: white">
             <TextArea fx:id="itemDetailsTextArea" VBox.vgrow="ALWAYS" wrapText="true" editable="false"/>
             <HBox>
-                <Label text="Due: " style="-fx-background-color: white">
+                <Label text="Дата дедлайна: " style="-fx-background-color: white">
                     <font>
                         <Font name="Calibri bold" size="17"/>
                     </font>
