@@ -1,6 +1,9 @@
 package com.hamaddo.common;
 
+import com.hamaddo.client.Гермафродит;
+import javafx.application.Platform;
 import javafx.collections.FXCollections;
+import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
 
 import java.io.BufferedReader;
@@ -15,19 +18,23 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
 import java.util.*;
+import java.util.stream.Collectors;
 
 public class TodoData {
+
     private static final TodoData instance = new TodoData();
     private static final String filename = "TodoListItems.txt";
 
     private ObservableList<TodoItem> todoItems;
     private final DateTimeFormatter formatter;
 
-    public static TodoData getInstance(){
+    private ListChangeListener<TodoItem> todoItemListener;
+
+    public static TodoData getInstance() {
         return instance;
     }
 
-    private TodoData(){
+    private TodoData() {
         formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
     }
 
@@ -35,11 +42,11 @@ public class TodoData {
         return todoItems;
     }
 
-    public void addTodoItem(TodoItem item){
+    public void addTodoItem(TodoItem item) {
         todoItems.add(item);
     }
 
-    public void deleteTodoItem(TodoItem item){
+    public void deleteTodoItem(TodoItem item) {
         todoItems.remove(item);
     }
 
@@ -63,6 +70,28 @@ public class TodoData {
             }
 
         }
+
+        todoItemListener = change -> Гермафродит.получитьЭкземпляр().постучать(todoItems.stream()
+                .map(todoItem -> todoItem.getShortDescription() + "\u0017" + todoItem.getDetails() + "\u0017" + todoItem.getDeadline().toString())
+                .collect(Collectors.joining("\u0004")) + "\u0004");
+        todoItems.addListener(todoItemListener);
+
+        Гермафродит.получитьЭкземпляр().установитьЗвонокЕслиКтоТоПостучалСнизу(стук -> {
+            List<TodoItem> receivedItems = Arrays.stream(стук.split("\u0004")).map(s -> {
+                String[] split = s.split("\u0017");
+
+                return new TodoItem(split[0], split[1], LocalDate.parse(split[2]));
+            }).collect(Collectors.toList());
+
+            Platform.runLater(() -> {
+                todoItems.removeListener(todoItemListener);
+
+                todoItems.clear();
+                todoItems.addAll(receivedItems);
+
+                todoItems.addListener(todoItemListener);
+            });
+        });
     }
 
     public void storeTodoItems() throws IOException {

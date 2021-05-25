@@ -1,5 +1,6 @@
 package com.hamaddo;
 
+import com.hamaddo.client.Гермафродит;
 import com.hamaddo.common.*;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -21,7 +22,13 @@ public class Main extends Application {
     }
 
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
+        if (args.length == 2 && args[0].equals("--connect")) {
+            Гермафродит.сделатьКрестьянина(args[1], 1339);
+        } else {
+            Гермафродит.сделатьХозяйна(1339);
+        }
+
         launch(args);
     }
 
@@ -29,6 +36,7 @@ public class Main extends Application {
     public void stop() throws Exception {
         try {
             TodoData.getInstance().storeTodoItems();
+            Гермафродит.получитьЭкземпляр().stop();
         } catch (IOException e){
             System.out.println(e.getMessage());
         }
