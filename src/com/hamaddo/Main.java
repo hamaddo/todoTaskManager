@@ -11,22 +11,14 @@ import javafx.stage.Stage;
 import java.io.IOException;
 
 public class Main extends Application {
-
-    @Override
-    public void start(Stage primaryStage) throws Exception{
-        Parent root = FXMLLoader.load(getClass().getResource("mainWindow.fxml"));
-        primaryStage.setTitle("Todo List");
-        setUserAgentStylesheet(STYLESHEET_CASPIAN);
-        primaryStage.setScene(new Scene(root, 1280, 720));
-        primaryStage.show();
-    }
-
+    private static boolean isServer = false;
 
     public static void main(String[] args) throws IOException {
         if (args.length == 2 && args[0].equals("--connect")) {
             Гермафродит.сделатьКрестьянина(args[1], 1339);
         } else {
             Гермафродит.сделатьХозяйна(1339);
+            isServer = true;
         }
 
         launch(args);
@@ -37,7 +29,7 @@ public class Main extends Application {
         try {
             TodoData.getInstance().storeTodoItems();
             Гермафродит.получитьЭкземпляр().stop();
-        } catch (IOException e){
+        } catch (IOException e) {
             System.out.println(e.getMessage());
         }
     }
@@ -46,8 +38,17 @@ public class Main extends Application {
     public void init() throws Exception {
         try {
             TodoData.getInstance().loadTodoItems();
-        } catch (IOException e){
+        } catch (IOException e) {
             System.out.println(e.getMessage());
         }
+    }
+
+    @Override
+    public void start(Stage primaryStage) throws Exception {
+        Parent root = FXMLLoader.load(getClass().getResource("mainWindow.fxml"));//грузим разметку основной сцены
+        primaryStage.setTitle(isServer ? "Клиент" : "Сервер");//название
+        setUserAgentStylesheet(STYLESHEET_CASPIAN);//стиль😎😎😎😎😎😎
+        primaryStage.setScene(new Scene(root, 1280, 720));//создаем сцену
+        primaryStage.show();//показываем
     }
 }
