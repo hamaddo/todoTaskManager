@@ -2,10 +2,13 @@ package com.hamaddo.client.views.app;
 
 import javax.swing.*;
 
+
 public class AppView {
-    private JTable table1;
-    private JTextArea textArea1;
-    private JTextArea textArea2;
-    private JButton button1;
-    private JRadioButton radioButton1;
+
+
+    private JButton buttonAddItem;
+    private JButton filterToggleButton;
+    private JButton buttonOpenMenubar;
+    private JList todoListView;
+    private JTextArea itemDetailsTextArea;
 }

@@ -24,7 +24,7 @@
         <VBox>
             <MenuBar>
                 <Menu text="Меню">
-                    <MenuItem text="Новый файл" onAction="#showNewItemDialog"/>
+                    <MenuItem text="Новое событие" onAction="#showNewItemDialog"/>
                     <SeparatorMenuItem/>
                     <MenuItem text="Выйти" onAction="#handleExit"/>
                 </Menu>
