@@ -1,6 +1,6 @@
 package com.hamaddo;
 
-import com.hamaddo.client.Гермафродит;
+import com.hamaddo.server.Гермафродит;
 import com.hamaddo.common.*;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;

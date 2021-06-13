@@ -1,4 +1,4 @@
-package com.hamaddo.client;
+package com.hamaddo.server;
 
 import java.io.BufferedReader;
 import java.io.IOException;

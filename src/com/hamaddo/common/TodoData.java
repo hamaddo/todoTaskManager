@@ -1,6 +1,6 @@
 package com.hamaddo.common;
 
-import com.hamaddo.client.Гермафродит;
+import com.hamaddo.server.Гермафродит;
 import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ListChangeListener;
@@ -32,21 +32,21 @@ public class TodoData {
 
     public static TodoData getInstance() {
         return instance;
-    }
+    } //получение instance
 
     private TodoData() {
         formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
-    }
+    } //форматирование даты
 
     public ObservableList<TodoItem> getTodoItems() {
         return todoItems;
-    }
+    }//получение списка событий
 
-    public void addTodoItem(TodoItem item) {
+    public void addTodoItem(TodoItem item) {//добавление события
         todoItems.add(item);
     }
 
-    public void deleteTodoItem(TodoItem item) {
+    public void deleteTodoItem(TodoItem item) {//удаление события
         todoItems.remove(item);
     }
 
@@ -92,7 +92,7 @@ public class TodoData {
                 todoItems.addListener(todoItemListener);
             });
         });
-    }
+    } //загрузка событий из файла
 
     public void storeTodoItems() throws IOException {
 
@@ -107,5 +107,5 @@ public class TodoData {
             }
 
         }
-    }
+    }//запись событий в файл
 }
