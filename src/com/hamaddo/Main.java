@@ -17,7 +17,7 @@ public class Main extends Application {
         if (args.length == 2 && args[0].equals("--connect")) {
             Гермафродит.сделатьКрестьянина(args[1], 1339);
         } else {
-            Гермафродит.сделатьХозяйна(1339);
+            Гермафродит.сделатьХозяина(1339);
             isServer = true;
         }
 

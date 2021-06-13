@@ -26,8 +26,8 @@ public class Гермафродит {
     private Гермафродит() {
     }
 
-    private Гермафродит(InetAddress адрес, int порт) throws IOException {
-        крестьянин = new Socket(адрес, порт);
+    private Гермафродит(InetAddress адрес, int порт) throws IOException {//создаем соединение
+        крестьянин = new Socket(адрес, порт);//сервер
         выход = new PrintWriter(крестьянин.getOutputStream());
         вход = new BufferedReader(new InputStreamReader(крестьянин.getInputStream()));
 
@@ -70,7 +70,7 @@ public class Гермафродит {
         }).start();
     }
 
-    public void установитьЗвонокЕслиКтоТоПостучалСнизу(ЗвонокЕслиКтоТоПостучалСнизу вотЭтоВотЕслиКтоТоПостучал) {
+    public void установитьЗвонокЕслиКтоТоПостучалСнизу(ЗвонокЕслиКтоТоПостучалСнизу вотЭтоВотЕслиКтоТоПостучал) {//обмениваемся стуками
         звонокЕслиКтоТоПостучалСнизу = вотЭтоВотЕслиКтоТоПостучал;
     }
 
@@ -79,11 +79,11 @@ public class Гермафродит {
         выход.flush();
     }
 
-    public static void сделатьХозяйна(int порт) throws IOException {
+    public static void сделатьХозяина(int порт) throws IOException {//создание сервера
         экземпляр = new Гермафродит(порт);
     }
 
-    public static void сделатьКрестьянина(String адресХозяйна, int порт) throws IOException {
+    public static void сделатьКрестьянина(String адресХозяйна, int порт) throws IOException {//создание клиента
         экземпляр = new Гермафродит(InetAddress.getByName(адресХозяйна), порт);
     }
 
