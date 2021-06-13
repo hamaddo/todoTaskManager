@@ -1,4 +1,4 @@
-package com.hamaddo.client.views.dialogue;
+package com.hamaddo.client.views.dialog;
 
 import com.hamaddo.common.*;
 import javafx.fxml.FXML;

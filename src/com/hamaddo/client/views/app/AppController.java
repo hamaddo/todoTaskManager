@@ -1,7 +1,7 @@
 package com.hamaddo.client.views.app;
 
 
-import com.hamaddo.client.views.dialogue.DialogController;
+import com.hamaddo.client.views.dialog.DialogController;
 import com.hamaddo.common.TodoData;
 import com.hamaddo.common.TodoItem;
 import javafx.application.Platform;
